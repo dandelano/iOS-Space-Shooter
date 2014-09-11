@@ -22,7 +22,7 @@ static const uint32_t _category = 0x1 << 1;
     if (self = [super init]) {
         // Initialize Object
         self = [Missile spriteNodeWithImageNamed:@"red-missile.png"];
-        [self setScale:0.15];
+        [self setScale:0.11];
         
         //Adding SpriteKit physicsBody for collision detection
         self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];

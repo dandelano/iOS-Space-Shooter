@@ -13,5 +13,5 @@
 @interface StartViewController : UIViewController
 
 -(IBAction)startGame:(id)sender;
-
+-(IBAction)gameMenu:(id)sender;
 @end

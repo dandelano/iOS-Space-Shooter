@@ -15,6 +15,11 @@
     return YES;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,5 +46,9 @@
     [self performSegueWithIdentifier:@"segueGameView" sender:self];
 }
 
+-(IBAction)gameMenu:(id)sender
+{
+    [self performSegueWithIdentifier:@"segueGameMenu" sender:self];
+}
 
 @end

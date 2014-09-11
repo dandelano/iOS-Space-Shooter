@@ -264,7 +264,7 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
         [self.itemLocations addObject:location];
         
         CALayer* layer = (CALayer*) [self.menuItems objectAtIndex:i];
-        layer.transform = CATransform3DRotate(CATransform3DIdentity, M_PI_2, 0, 0, 1);
+        layer.transform = CATransform3DIdentity;//CATransform3DRotate(CATransform3DIdentity, M_PI_2, 0, 0, 1);
        
         // Rotate menu items based on orientation
 //        if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
@@ -379,7 +379,8 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
                 }
                 
                 // Scale
-                CATransform3D scaleTransForm =  CATransform3DScale(CATransform3DRotate(CATransform3DIdentity, M_PI_2, 0, 0, 1), scaleFactor, scaleFactor, 1.0);
+                //CATransform3D scaleTransForm =  CATransform3DScale(CATransform3DRotate(CATransform3DIdentity, M_PI_2, 0, 0, 1), scaleFactor, scaleFactor, 1.0);
+                CATransform3D scaleTransForm =  CATransform3DScale(CATransform3DIdentity, scaleFactor, scaleFactor, 1.0);
                 
                 CGFloat xtrans = cosf(itemLocation.angle);
                 CGFloat ytrans = sinf(itemLocation.angle);
@@ -409,7 +410,7 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
         GHMenuItemLocation* itemLocation = [self.itemLocations objectAtIndex:self.prevIndex];
         layer.position = itemLocation.position;
         layer.backgroundColor = self.itemBGColor;
-        layer.transform = CATransform3DRotate(CATransform3DIdentity, M_PI_2, 0, 0, 1); // Added rotate instead of identity
+        layer.transform = CATransform3DIdentity;//CATransform3DRotate(CATransform3DIdentity, M_PI_2, 0, 0, 1); // Added rotate instead of identity
         self.prevIndex = -1;
     }
 }
@@ -467,7 +468,7 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
         layer.position = toPosition;
         layer.backgroundColor = self.itemBGColor;
         layer.opacity = 0.0f;
-        layer.transform = CATransform3DRotate(CATransform3DIdentity, M_PI_2, 0, 0, 1); // Added rotate instead of identity//CATransform3DIdentity;
+        layer.transform = CATransform3DIdentity;//CATransform3DRotate(CATransform3DIdentity, M_PI_2, 0, 0, 1); // Added rotate instead of identity
         [CATransaction commit];
     }
 }

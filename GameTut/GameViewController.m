@@ -27,7 +27,7 @@
     
     if (!skView.scene) {
         skView.showsFPS = NO;
-        skView.showsNodeCount = YES;
+        skView.showsNodeCount = NO;
         
         // Create and configure the scene.
         SKScene * scene = [GamePlayScene sceneWithSize:skView.bounds.size];
@@ -52,8 +52,8 @@
     
     // now create context menu
     GHContextMenuView* overlay = [[GHContextMenuView alloc] init];
-    overlay.dataSource = self;
-    overlay.delegate = self;
+    [overlay setDataSource:self];
+    [overlay setDelegate:self];
     
     UILongPressGestureRecognizer* _longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:overlay action:@selector(longPressDetected:)];
     [self.imageView setUserInteractionEnabled:YES];
@@ -104,12 +104,15 @@
         case 0:
             if ([self isGamePlaying]) {
                 msg = @"Pause selected";
+                [self setIsGamePlaying:NO];
             }else{
                 msg = @"Play selected";
+                [self setIsGamePlaying:YES];
             }
             break;
         case 1:
-            msg = @"Power selected";
+            msg = @"You quit the game!";
+            [self.navigationController popViewControllerAnimated:TRUE];
             break;
         default:
             break;

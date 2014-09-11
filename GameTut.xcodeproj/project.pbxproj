@@ -19,6 +19,7 @@
 		4865914C19BF5B1D004C27EB /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865914B19BF5B1D004C27EB /* GameViewController.m */; };
 		4865915019BF5D69004C27EB /* Contsants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865914F19BF5D69004C27EB /* Contsants.m */; };
 		4865915719BF70C0004C27EB /* GHContextMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865915619BF70C0004C27EB /* GHContextMenuView.m */; };
+		48885D8419C14FE700EF3A23 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48885D8319C14FE700EF3A23 /* MenuViewController.m */; };
 		48B575A519C0A227004F28B4 /* pause-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 48B5759F19C0A227004F28B4 /* pause-white.png */; };
 		48B575A619C0A227004F28B4 /* pause-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48B575A019C0A227004F28B4 /* pause-white@2x.png */; };
 		48B575A719C0A227004F28B4 /* play-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 48B575A119C0A227004F28B4 /* play-white.png */; };
@@ -79,6 +80,8 @@
 		4865914F19BF5D69004C27EB /* Contsants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contsants.m; sourceTree = "<group>"; };
 		4865915519BF70B7004C27EB /* GHContextMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHContextMenuView.h; sourceTree = "<group>"; };
 		4865915619BF70C0004C27EB /* GHContextMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHContextMenuView.m; sourceTree = "<group>"; };
+		48885D8219C14FE700EF3A23 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		48885D8319C14FE700EF3A23 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		48B5759F19C0A227004F28B4 /* pause-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause-white.png"; sourceTree = "<group>"; };
 		48B575A019C0A227004F28B4 /* pause-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause-white@2x.png"; sourceTree = "<group>"; };
 		48B575A119C0A227004F28B4 /* play-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-white.png"; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 				48CA936B19AD174900AF7C32 /* StartViewController.m */,
 				4865914A19BF5B1D004C27EB /* GameViewController.h */,
 				4865914B19BF5B1D004C27EB /* GameViewController.m */,
+				48885D8219C14FE700EF3A23 /* MenuViewController.h */,
+				48885D8319C14FE700EF3A23 /* MenuViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 				481DB42E19B8D620005CAC1F /* Asteroid.m in Sources */,
 				48CA939819AD23A900AF7C32 /* GameOverScene.m in Sources */,
 				48CA936F19AD174900AF7C32 /* GamePlayScene.m in Sources */,
+				48885D8419C14FE700EF3A23 /* MenuViewController.m in Sources */,
 				4865914C19BF5B1D004C27EB /* GameViewController.m in Sources */,
 				48CA936C19AD174900AF7C32 /* StartViewController.m in Sources */,
 				4865914719BF5581004C27EB /* GameStartScene.m in Sources */,
