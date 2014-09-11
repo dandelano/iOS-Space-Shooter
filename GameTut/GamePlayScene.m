@@ -45,6 +45,8 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
     NSTimeInterval _lastMissileAdded;
 }
 
+@synthesize gameViewController = _gameViewController;
+
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         // Initialize background
@@ -112,7 +114,9 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
 
 -(void)fireMissile:(UITapGestureRecognizer *)gesture
 {
-    [_missileManager fireMissile:[_ship shipLocation]];
+    if ([_gameViewController isGamePlaying]) {
+        [_missileManager fireMissile:[_ship shipLocation]];
+    }
 }
 
 -(void)removeMissile:(Missile *)missile
@@ -122,10 +126,12 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *touch = [touches anyObject];
-    CGPoint touchLocation = [touch locationInNode:self.scene];
-    CGPoint newLocation = CGPointMake(0, ([_ship shipLocation].y + touchLocation.y)/2);
-    [_ship move:newLocation];
+    if ([_gameViewController isGamePlaying]) {
+        UITouch *touch = [touches anyObject];
+        CGPoint touchLocation = [touch locationInNode:self.scene];
+        CGPoint newLocation = CGPointMake(0, ([_ship shipLocation].y + touchLocation.y)/2);
+        [_ship move:newLocation];
+    }
 }
 
 - (void)moveBg
@@ -186,14 +192,17 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
     
     _lastUpdateTime = currentTime;
     
-    if (currentTime - _lastMissileAdded > 1) {
-        _lastMissileAdded = currentTime + 1;
-        [self addAsteroid];
+    if ([_gameViewController isGamePlaying]) {
+        
+        if (currentTime - _lastMissileAdded > 1) {
+            _lastMissileAdded = currentTime + 1;
+            [self addAsteroid];
+        }
+        
+        [self moveBg];
+        [self moveGameObjects];
+        [self updateGameStatistics];
     }
-    
-    [self moveBg];
-    [self moveGameObjects];
-    [self updateGameStatistics];
 }
 
 /*
