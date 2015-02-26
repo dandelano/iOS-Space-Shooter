@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 #import "GamePlayScene.h"
+#import "GameOverScene.h"
 #import "GHContextMenuView.h"
 
 @interface GameViewController ()<GHContextOverlayViewDataSource, GHContextOverlayViewDelegate>
@@ -16,29 +17,31 @@
 
 @end
 
-@implementation GameViewController
+@implementation GameViewController{
+    SKView *_skView;
+    GHContextMenuView* overlay;
+}
 
 @synthesize isGamePlaying = _isGamePlaying;
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     
-    SKView * skView = (SKView *)self.view;
+    _skView = (SKView *)self.view;
     
-    if (!skView.scene) {
-        skView.showsFPS = NO;
-        skView.showsNodeCount = NO;
+    if (!_skView.scene) {
+        _skView.showsFPS = NO;
+        _skView.showsNodeCount = NO;
         
         // Create and configure the scene.
-        GamePlayScene *gameScene = [GamePlayScene sceneWithSize:skView.bounds.size];
+        GamePlayScene *gameScene = [GamePlayScene sceneWithSize:_skView.bounds.size];
         [gameScene setGameViewController: self];
         
-        SKScene * scene = (SKScene *) gameScene;
+        SKScene *scene = (SKScene *) gameScene;
         scene.scaleMode = SKSceneScaleModeAspectFill;
         
-        
         // Present the scene.
-        [skView presentScene:scene];
+        [_skView presentScene:scene];
     }
 }
 
@@ -55,7 +58,7 @@
     [self setIsGamePlaying: YES];
     
     // now create context menu
-    GHContextMenuView* overlay = [[GHContextMenuView alloc] init];
+    overlay = [[GHContextMenuView alloc] init];
     [overlay setDataSource:self];
     [overlay setDelegate:self];
     
@@ -63,6 +66,44 @@
     [self.imageView setUserInteractionEnabled:YES];
     [self.view addGestureRecognizer:_longPressRecognizer];
 }
+
+-(void)startGame
+{
+    [self setIsGamePlaying:YES];
+    
+        _skView.showsFPS = NO;
+        _skView.showsNodeCount = NO;
+        
+        // Create and configure the scene.
+        GamePlayScene *gameScene = [GamePlayScene sceneWithSize:_skView.bounds.size];
+        [gameScene setGameViewController: self];
+        
+        SKScene *scene = (SKScene *) gameScene;
+        scene.scaleMode = SKSceneScaleModeAspectFill;
+        
+        SKTransition *reveal = [SKTransition fadeWithDuration:0.3];
+        // Present the scene.
+        [_skView presentScene:scene transition: reveal];
+}
+-(void)gameEnded
+{
+    [self setIsGamePlaying:NO];
+    
+        _skView.showsFPS = NO;
+        _skView.showsNodeCount = NO;
+        
+        // Create and configure the scene.
+        GameOverScene *gameOverScene = [GameOverScene sceneWithSize:_skView.bounds.size];
+        [gameOverScene setGameViewController: self];
+        
+        SKScene *scene = (SKScene *) gameOverScene;
+        scene.scaleMode = SKSceneScaleModeAspectFill;
+        
+        SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:0.5];
+        // Present the scene.
+        [_skView presentScene:scene transition: reveal];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -107,10 +148,9 @@
     switch (selectedIndex) {
         case 0:
             if ([self isGamePlaying]) {
-                msg = @"Pause selected";
+                msg = @"Game Paused";
                 [self setIsGamePlaying:NO];
             }else{
-                msg = @"Play selected";
                 [self setIsGamePlaying:YES];
             }
             break;
@@ -122,9 +162,10 @@
             break;
     }
     
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
-    
+    if (msg != nil) {
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
 @end

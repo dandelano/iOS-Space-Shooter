@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Contsants.h"
 #import "GamePlayScene.h"
 #import "Asteroid.h"
 
@@ -16,8 +17,7 @@
 @property (readonly) int playerScore;
 @property CGPoint shipLocation;
 
--(id)initWithScene:(GamePlayScene *)scene;
+-(id)initWithScene:(GamePlayScene *)aScene;
 -(void)move:(CGPoint)aPoint;
--(void)lostLife;
--(void)scoredPoint;
+
 @end

@@ -15,11 +15,14 @@
 		483995F419AF79C50078BF46 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 483995F319AF79C50078BF46 /* asteroid.png */; };
 		483995F619AF7C1C0078BF46 /* bg-space.png in Resources */ = {isa = PBXBuildFile; fileRef = 483995F519AF7C1C0078BF46 /* bg-space.png */; };
 		483995FB19AF90180078BF46 /* explosion.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 483995FA19AF90180078BF46 /* explosion.atlas */; };
-		4865914719BF5581004C27EB /* GameStartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865914619BF5581004C27EB /* GameStartScene.m */; };
 		4865914C19BF5B1D004C27EB /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865914B19BF5B1D004C27EB /* GameViewController.m */; };
 		4865915019BF5D69004C27EB /* Contsants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865914F19BF5D69004C27EB /* Contsants.m */; };
 		4865915719BF70C0004C27EB /* GHContextMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865915619BF70C0004C27EB /* GHContextMenuView.m */; };
-		48885D8419C14FE700EF3A23 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48885D8319C14FE700EF3A23 /* MenuViewController.m */; };
+		487C8AD619CB58CB006467C3 /* GameStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 487C8AD519CB58CB006467C3 /* GameStatistics.m */; };
+		487C8AD919CB68D3006467C3 /* ScrollingBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 487C8AD819CB68D3006467C3 /* ScrollingBackground.m */; };
+		487C8ADC19CB6A7F006467C3 /* CGPointMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 487C8ADB19CB6A7F006467C3 /* CGPointMath.m */; };
+		48885D8419C14FE700EF3A23 /* ScoreRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48885D8319C14FE700EF3A23 /* ScoreRankViewController.m */; };
+		489CE27519E47DD100BCDDFB /* HighScoreKeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 489CE27419E47DD100BCDDFB /* HighScoreKeeper.m */; };
 		48B575A519C0A227004F28B4 /* pause-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 48B5759F19C0A227004F28B4 /* pause-white.png */; };
 		48B575A619C0A227004F28B4 /* pause-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48B575A019C0A227004F28B4 /* pause-white@2x.png */; };
 		48B575A719C0A227004F28B4 /* play-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 48B575A119C0A227004F28B4 /* play-white.png */; };
@@ -72,16 +75,22 @@
 		483995F319AF79C50078BF46 /* asteroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid.png; sourceTree = "<group>"; };
 		483995F519AF7C1C0078BF46 /* bg-space.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-space.png"; sourceTree = "<group>"; };
 		483995FA19AF90180078BF46 /* explosion.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = explosion.atlas; sourceTree = "<group>"; };
-		4865914519BF5581004C27EB /* GameStartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStartScene.h; sourceTree = "<group>"; };
-		4865914619BF5581004C27EB /* GameStartScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStartScene.m; sourceTree = "<group>"; };
 		4865914A19BF5B1D004C27EB /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		4865914B19BF5B1D004C27EB /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		4865914E19BF5D69004C27EB /* Contsants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contsants.h; sourceTree = "<group>"; };
 		4865914F19BF5D69004C27EB /* Contsants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contsants.m; sourceTree = "<group>"; };
 		4865915519BF70B7004C27EB /* GHContextMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHContextMenuView.h; sourceTree = "<group>"; };
 		4865915619BF70C0004C27EB /* GHContextMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHContextMenuView.m; sourceTree = "<group>"; };
-		48885D8219C14FE700EF3A23 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		48885D8319C14FE700EF3A23 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		487C8AD419CB58CB006467C3 /* GameStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStatistics.h; sourceTree = "<group>"; };
+		487C8AD519CB58CB006467C3 /* GameStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStatistics.m; sourceTree = "<group>"; };
+		487C8AD719CB68D3006467C3 /* ScrollingBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollingBackground.h; sourceTree = "<group>"; };
+		487C8AD819CB68D3006467C3 /* ScrollingBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollingBackground.m; sourceTree = "<group>"; };
+		487C8ADA19CB6A7F006467C3 /* CGPointMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPointMath.h; sourceTree = "<group>"; };
+		487C8ADB19CB6A7F006467C3 /* CGPointMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPointMath.m; sourceTree = "<group>"; };
+		48885D8219C14FE700EF3A23 /* ScoreRankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreRankViewController.h; sourceTree = "<group>"; };
+		48885D8319C14FE700EF3A23 /* ScoreRankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreRankViewController.m; sourceTree = "<group>"; };
+		489CE27319E47DD100BCDDFB /* HighScoreKeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreKeeper.h; sourceTree = "<group>"; };
+		489CE27419E47DD100BCDDFB /* HighScoreKeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreKeeper.m; sourceTree = "<group>"; };
 		48B5759F19C0A227004F28B4 /* pause-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause-white.png"; sourceTree = "<group>"; };
 		48B575A019C0A227004F28B4 /* pause-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause-white@2x.png"; sourceTree = "<group>"; };
 		48B575A119C0A227004F28B4 /* play-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-white.png"; sourceTree = "<group>"; };
@@ -151,6 +160,10 @@
 				481DB42D19B8D620005CAC1F /* Asteroid.m */,
 				481DB42F19B8F2F6005CAC1F /* PlayerShip.h */,
 				481DB43019B8F2F6005CAC1F /* PlayerShip.m */,
+				487C8AD419CB58CB006467C3 /* GameStatistics.h */,
+				487C8AD519CB58CB006467C3 /* GameStatistics.m */,
+				487C8AD719CB68D3006467C3 /* ScrollingBackground.h */,
+				487C8AD819CB68D3006467C3 /* ScrollingBackground.m */,
 			);
 			name = GameObjects;
 			sourceTree = "<group>";
@@ -169,8 +182,6 @@
 			children = (
 				48CA939619AD23A900AF7C32 /* GameOverScene.h */,
 				48CA939719AD23A900AF7C32 /* GameOverScene.m */,
-				4865914519BF5581004C27EB /* GameStartScene.h */,
-				4865914619BF5581004C27EB /* GameStartScene.m */,
 				48CA936D19AD174900AF7C32 /* GamePlayScene.h */,
 				48CA936E19AD174900AF7C32 /* GamePlayScene.m */,
 			);
@@ -193,8 +204,8 @@
 				48CA936B19AD174900AF7C32 /* StartViewController.m */,
 				4865914A19BF5B1D004C27EB /* GameViewController.h */,
 				4865914B19BF5B1D004C27EB /* GameViewController.m */,
-				48885D8219C14FE700EF3A23 /* MenuViewController.h */,
-				48885D8319C14FE700EF3A23 /* MenuViewController.m */,
+				48885D8219C14FE700EF3A23 /* ScoreRankViewController.h */,
+				48885D8319C14FE700EF3A23 /* ScoreRankViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -216,6 +227,17 @@
 				4865915519BF70B7004C27EB /* GHContextMenuView.h */,
 			);
 			name = ContextMenu;
+			sourceTree = "<group>";
+		};
+		487C8ADD19CB6FAF006467C3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				487C8ADA19CB6A7F006467C3 /* CGPointMath.h */,
+				487C8ADB19CB6A7F006467C3 /* CGPointMath.m */,
+				489CE27319E47DD100BCDDFB /* HighScoreKeeper.h */,
+				489CE27419E47DD100BCDDFB /* HighScoreKeeper.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		48B5759E19C0A1F4004F28B4 /* MenuImgs */ = {
@@ -265,6 +287,7 @@
 		48CA935B19AD174900AF7C32 /* GameTut */ = {
 			isa = PBXGroup;
 			children = (
+				487C8ADD19CB6FAF006467C3 /* Utilities */,
 				4865915419BF70A2004C27EB /* ContextMenu */,
 				4865914D19BF5D47004C27EB /* Constants */,
 				48CA939519AD213900AF7C32 /* Art */,
@@ -368,7 +391,7 @@
 		48CA934819AD174900AF7C32 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Danny J. Delano Jr.";
 				TargetAttributes = {
 					48CA937719AD174900AF7C32 = {
@@ -433,14 +456,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				489CE27519E47DD100BCDDFB /* HighScoreKeeper.m in Sources */,
+				487C8ADC19CB6A7F006467C3 /* CGPointMath.m in Sources */,
+				487C8AD619CB58CB006467C3 /* GameStatistics.m in Sources */,
 				481DB43119B8F2F6005CAC1F /* PlayerShip.m in Sources */,
 				481DB42E19B8D620005CAC1F /* Asteroid.m in Sources */,
+				487C8AD919CB68D3006467C3 /* ScrollingBackground.m in Sources */,
 				48CA939819AD23A900AF7C32 /* GameOverScene.m in Sources */,
 				48CA936F19AD174900AF7C32 /* GamePlayScene.m in Sources */,
-				48885D8419C14FE700EF3A23 /* MenuViewController.m in Sources */,
+				48885D8419C14FE700EF3A23 /* ScoreRankViewController.m in Sources */,
 				4865914C19BF5B1D004C27EB /* GameViewController.m in Sources */,
 				48CA936C19AD174900AF7C32 /* StartViewController.m in Sources */,
-				4865914719BF5581004C27EB /* GameStartScene.m in Sources */,
 				48CA936619AD174900AF7C32 /* AppDelegate.m in Sources */,
 				4865915719BF70C0004C27EB /* GHContextMenuView.m in Sources */,
 				4865915019BF5D69004C27EB /* Contsants.m in Sources */,
@@ -501,7 +527,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -540,7 +565,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -602,7 +626,6 @@
 		48CA938D19AD174900AF7C32 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GameTut.app/GameTut";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -625,7 +648,6 @@
 		48CA938E19AD174900AF7C32 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GameTut.app/GameTut";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

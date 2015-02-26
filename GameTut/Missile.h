@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Contsants.h"
 #import "Asteroid.h"
 
 @interface Missile : SKSpriteNode
@@ -17,5 +18,6 @@
 -(id)initWithID:(int)aID;
 -(void)hide;
 -(void)show;
--(void)move:(CGPoint)aPoint;
+-(void)moveMissile:(NSTimeInterval)delayTime;
+-(void)moveToPosition:(CGPoint)position;
 @end

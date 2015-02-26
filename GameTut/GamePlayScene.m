@@ -7,61 +7,52 @@
 //
 
 #import "GamePlayScene.h"
+#import "ScrollingBackground.h"
 #import "PlayerShip.h"
 #import "MissileManager.h"
 #import "Asteroid.h"
 #import "Explosion.h"
+#import "GameStatistics.h"
 #import "GameOverScene.h"
 
-static const float BG_VELOCITY = 100.0;
-static const float OBJECT_VELOCITY = 160.0;
-
-
-
-static inline CGPoint CGPointAdd(const CGPoint a, const CGPoint b)
-{
-    return CGPointMake(a.x + b.x, a.y + b.y);
-}
-
-static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
-{
-    return CGPointMake(a.x * b, a.y * b);
-}
-
 @implementation GamePlayScene{
-    // Ship
+    // Game Objects
+    ScrollingBackground *_background;
+    GameStatistics *_game_stats_label;
     PlayerShip *_ship;
-    // Stats label
-    SKLabelNode *_game_stats_label;
-    // Explosions
     Explosion *_explosion;
-    // Missiles
     MissileManager *_missileManager;
     // GestureRecognizer
     UITapGestureRecognizer *_tapRecog;
     // Timing
     NSTimeInterval _lastUpdateTime;
-    NSTimeInterval _dt;
-    NSTimeInterval _lastMissileAdded;
+    NSTimeInterval _delayTime;
+    NSTimeInterval _lastAsteroidAdded;
 }
 
 @synthesize gameViewController = _gameViewController;
 
--(id)initWithSize:(CGSize)size {
-    if (self = [super initWithSize:size]) {
+-(id)initWithSize:(CGSize)size
+{
+    if (self = [super initWithSize:size]) {        
         // Initialize background
         self.backgroundColor = [SKColor whiteColor];
-        [self initalizingScrollingBackground];
+        
+        // Initialize game background
+        _background = [[ScrollingBackground alloc] initWithScene:self andPointVelocity:CGPointMake(-100, 0)];
+        
+        // Initialize game statistics
+        _game_stats_label = [[GameStatistics alloc] initWithScene:self andLocation:CGPointMake(10, 5)];
+        
         // Initialize ship
         _ship = [[PlayerShip alloc] initWithScene:self];
+        
         // Initialize missiles
         _missileManager = [[MissileManager alloc] initWithScene:self];
+        
         // Initialize explosion
         _explosion = [[Explosion alloc] initWithScene:self];
         
-        // add game stats to screen
-        [self initGameStatistics];
-
         //Making self delegate of physics World
         self.physicsWorld.gravity = CGVectorMake(0,0);
         self.physicsWorld.contactDelegate = self;
@@ -80,37 +71,6 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
     _tapRecog.delegate = self;
 }
 
--(void)initalizingScrollingBackground
-{
-    for (int i = 0; i < 2; i++) {
-        SKSpriteNode *bg = [SKSpriteNode spriteNodeWithImageNamed:@"bg-space.png"];
-        bg.position = CGPointMake(i * bg.size.width, 0);
-        bg.anchorPoint = CGPointZero;
-        bg.name = @"bg";
-        [self addChild:bg];
-    }
-    
-}
-
--(void)initGameStatistics
-{
-    _game_stats_label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    _game_stats_label.text = [NSString stringWithFormat:@"Lives: %d Score: %d",[_ship playerLives],[_ship playerScore]];
-    _game_stats_label.fontSize = 16;
-    _game_stats_label.fontColor = [SKColor whiteColor];
-    _game_stats_label.position = CGPointMake(80, 5);
-    [self addChild:_game_stats_label];
-}
-
--(void)updateGameStatistics
-{
-    _game_stats_label.text = [NSString stringWithFormat:@"Lives: %d Score: %d",[_ship playerLives],[_ship playerScore]];
-}
-
--(void)addAsteroid
-{
-    [self addChild:[[Asteroid alloc] initWithScene:self]];
-}
 
 -(void)fireMissile:(UITapGestureRecognizer *)gesture
 {
@@ -119,10 +79,6 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
     }
 }
 
--(void)removeMissile:(Missile *)missile
-{
-    [_missileManager removeMissile:[missile ID]];
-}
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -134,33 +90,16 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
     }
 }
 
-- (void)moveBg
-{
-    [self enumerateChildNodesWithName:@"bg" usingBlock: ^(SKNode *node, BOOL *stop)
-     {
-         SKSpriteNode * bg = (SKSpriteNode *) node;
-         CGPoint bgVelocity = CGPointMake(-BG_VELOCITY, 0);
-         CGPoint amtToMove = CGPointMultiplyScalar(bgVelocity,_dt);
-         bg.position = CGPointAdd(bg.position, amtToMove);
-         
-         //Checks if bg node is completely scrolled of the screen, if yes then put it at the end of the other node
-         if (bg.position.x <= -bg.size.width)
-             bg.position = CGPointMake(bg.position.x + bg.size.width * 2, bg.position.y);
-     }];
-}
 
 - (void)moveGameObjects
 {
     NSArray *nodes = self.children;//1
     for(SKNode *node in nodes){
-        // Get velocity and interpolation amount
-        CGPoint obVelocity = CGPointMake(OBJECT_VELOCITY, 0);
-        CGPoint amtToMove = CGPointMultiplyScalar(obVelocity,_dt);
  
         if ([node.name  isEqual: @"asteroid"]) {
-            SKSpriteNode *asteroid = (SKSpriteNode *) node;
-            amtToMove.x *= -1; // Asteroids move to the left
-            asteroid.position = CGPointAdd(asteroid.position, amtToMove);
+            Asteroid *asteroid = (Asteroid *) node;                       
+            [asteroid moveAsteroid: _delayTime];
+            [asteroid rotate];
             if(asteroid.position.x < -100)
                 [asteroid removeFromParent];
         }
@@ -169,12 +108,10 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
             Missile *missile = (Missile *) node;
 
             if ([missile isHidden] == NO) {
-                [missile move: CGPointAdd(missile.position, amtToMove)];
+                [missile moveMissile: _delayTime];
             
                 if(missile.position.x >= self.frame.size.width )
-                {
                     [_missileManager removeMissile:[missile ID]];
-                }
             }
         }
     }
@@ -186,22 +123,21 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
 -(void)update:(CFTimeInterval)currentTime {
     
     if (_lastUpdateTime)
-        _dt = currentTime - _lastUpdateTime;
+        _delayTime = currentTime - _lastUpdateTime;
     else
-        _dt = 0;
+        _delayTime = 0;
     
     _lastUpdateTime = currentTime;
     
     if ([_gameViewController isGamePlaying]) {
         
-        if (currentTime - _lastMissileAdded > 1) {
-            _lastMissileAdded = currentTime + 1;
-            [self addAsteroid];
+        if (currentTime - _lastAsteroidAdded > 1) {
+            _lastAsteroidAdded = currentTime + 1;
+            [self addChild:[[Asteroid alloc] initWithScene:self]];
         }
         
-        [self moveBg];
-        [self moveGameObjects];
-        [self updateGameStatistics];
+        [_background scrollBackground: _delayTime];
+        [self moveGameObjects];        
     }
 }
 
@@ -229,12 +165,9 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
         CGPoint loc = secondBody.node.position;
         [secondBody.node removeFromParent];
         [_explosion showExplosion:loc];
-        [_ship lostLife];
-        if ([_ship playerLives] <= 0) {
-            //[_ship removeFromParent];
-            SKTransition *reveal = [SKTransition fadeWithDuration:0.3];
-            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size];
-            [self.view presentScene:gameOverScene transition: reveal];
+        [_game_stats_label subtractPlayerLife];
+        if ([_game_stats_label playerLives] <= 0) {
+            [[self gameViewController] gameEnded];
         }
     }
     
@@ -250,7 +183,7 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
             [secondBody.node removeFromParent];
             [_explosion showExplosion:loc];
             // Add to score
-            [_ship scoredPoint];        }
+            [_game_stats_label addPlayerPoint];        }
     }
 }
 

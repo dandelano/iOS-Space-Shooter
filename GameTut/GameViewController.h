@@ -12,5 +12,6 @@
 @interface GameViewController : UIViewController
 
 @property BOOL isGamePlaying;
-
+-(void)startGame;
+-(void)gameEnded;
 @end

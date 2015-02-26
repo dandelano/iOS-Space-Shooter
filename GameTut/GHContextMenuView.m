@@ -197,6 +197,8 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
         [self animateMenu:NO];
         [self setNeedsDisplay];
         [self removeFromSuperview];
+        
+        [self reloadData];// trying to reload images
     }
 }
 

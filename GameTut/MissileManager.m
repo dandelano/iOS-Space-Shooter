@@ -8,18 +8,16 @@
 
 #import "MissileManager.h"
 
-static const int MAX_MISSILES = 5;
-
 @implementation MissileManager{
     NSArray *_missiles;
     GamePlayScene *_scene;
 }
 
--(id)initWithScene:(GamePlayScene *)scene
+-(id)initWithScene:(GamePlayScene *)aScene
 {
     if (self = [super init]) {
         // Initialize
-        _scene = scene;
+        _scene = aScene;
         NSMutableArray *missiles = [NSMutableArray array];
         for (int i = 0; i < MAX_MISSILES; i++) {
             Missile *missile = [[Missile alloc] initWithID:i];
@@ -44,15 +42,10 @@ static const int MAX_MISSILES = 5;
         }
     }
     if (availableID != -1) {
-        [self moveMissile:aPoint ID: availableID];
+        [_missiles[availableID] moveToPosition: aPoint];
         [_missiles[availableID] show];
     }
     return;
-}
-
--(void)moveMissile:(CGPoint)aPoint ID:(int)aID
-{
-    [_missiles[aID] move:aPoint];
 }
 
 -(void)removeMissile:(int)aID

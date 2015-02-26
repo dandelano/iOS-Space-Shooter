@@ -11,7 +11,7 @@
 @implementation Missile
 
 // Define the category for physics
-static const uint32_t _category = 0x1 << 1;
+static const uint32_t _category = GOMissile;
 +(uint32_t)category {@synchronized(self){return _category;}}
 
 @synthesize ID = _ID;
@@ -54,9 +54,16 @@ static const uint32_t _category = 0x1 << 1;
     _isHidden = NO;
 }
 
--(void)move:(CGPoint)aPoint
+-(void)moveMissile:(NSTimeInterval)delayTime
 {
-    self.position = aPoint;
+    // Get velocity and interpolation amount
+    CGPoint amtToMove = [CGPointMath CGPointMultiplyScalar:CGPointMake(MISSILE_VELOCITY, 0) andScalar: delayTime];
+    self.position = [CGPointMath CGPointAdd: self.position andPointToAdd: amtToMove];
+}
+
+-(void)moveToPosition:(CGPoint)position
+{
+    self.position = position;
 }
 
 @end

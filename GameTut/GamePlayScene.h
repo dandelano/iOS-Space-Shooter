@@ -8,7 +8,10 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import <UIKit/UIKit.h>
+#import "Contsants.h"
+#import "CGPointMath.h"
 #import "GameViewController.h"
+
 
 @interface GamePlayScene : SKScene <UIGestureRecognizerDelegate, SKPhysicsContactDelegate>
 @property (nonatomic,weak) GameViewController *gameViewController;

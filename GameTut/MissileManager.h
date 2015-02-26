@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+#import "Contsants.h"
 #import "GamePlayScene.h"
 #import "Missile.h"
 
 @interface MissileManager : NSObject
 
--(id)initWithScene:(GamePlayScene *)scene;
+-(id)initWithScene:(GamePlayScene *)aScene;
 
 -(void)fireMissile:(CGPoint)aPoint;
 -(void)moveMissile:(CGPoint)aPoint ID:(int)aID;

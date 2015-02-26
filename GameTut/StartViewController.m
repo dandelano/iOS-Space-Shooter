@@ -7,7 +7,6 @@
 //
 
 #import "StartViewController.h"
-#import "GameStartScene.h"
 
 @implementation StartViewController
 

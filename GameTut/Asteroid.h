@@ -7,9 +7,16 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Contsants.h"
 #import "PlayerShip.h"
 
 @interface Asteroid : SKSpriteNode
 +(uint32_t)category;
--(id)initWithScene:(GamePlayScene *)scene;
+
+@property (readonly) int rotationDirection;
+@property (readonly) int velocity;
+
+-(id)initWithScene:(GamePlayScene *)aScene;
+-(void)moveAsteroid:(NSTimeInterval)delayTime;
+-(void)rotate;
 @end

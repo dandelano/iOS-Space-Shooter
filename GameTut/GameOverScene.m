@@ -10,7 +10,11 @@
 #import "GamePlayScene.h"
 
 @implementation GameOverScene
--(id)initWithSize:(CGSize)size {
+
+@synthesize gameViewController = _gameViewController;
+
+-(id)initWithSize:(CGSize)size
+{
     if (self = [super initWithSize:size]) {
         
         self.backgroundColor = [SKColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
@@ -43,12 +47,7 @@
     SKNode *node = [self nodeAtPoint:location];
     
     if ([node.name isEqualToString:@"retry"]) {
-        SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:0.5];
-        
-        GamePlayScene * scene = [GamePlayScene sceneWithSize:self.view.bounds.size];
-        scene.scaleMode = SKSceneScaleModeAspectFill;
-        [self.view presentScene:scene transition: reveal];
-        
+        [[self gameViewController] startGame];
     }
 }
 @end

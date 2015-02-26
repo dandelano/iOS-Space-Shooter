@@ -7,7 +7,8 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "GameViewController.h"
 
 @interface GameOverScene : SKScene
-
+@property (nonatomic,weak) GameViewController *gameViewController;
 @end
